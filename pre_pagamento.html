@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueControl – Pagamento</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --card: #0d1320;
+      --primary: #4da3ff;
+      --text: #e6ecff;
+      --muted: #9bb3d1;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      background: var(--card);
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 500px;
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      color: var(--primary);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    p {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .pix-box {
+      background: #0b1220;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .pix-key {
+      background: var(--primary);
+      color: #000;
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+      .user-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+
+    input {
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+      background: #0b1220;
+      color: var(--text);
+    }
+
+    .submit-btn {
+      background: var(--primary);
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      color: #000;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .submit-btn:hover {
+      opacity: 0.85;
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Finalizar Pagamento</h1>
+    <p>Faça o pagamento via PIX para liberar seu acesso à planilha BlueControl.</p>
+
+    <form class="user-form" onsubmit="goToPix(event)">
+      <label>Nome Completo</label>
+      <input type="text" required placeholder="Seu nome" />
+
+      <label>Email</label>
+      <input type="email" required placeholder="seuemail@gmail.com" />
+
+      <button type="submit" class="submit-btn">Continuar para o PIX</button>
+    </form>
+
+    <div class="pix-box" style="display:none;" id="pixSection">
+      <h3>Pagamento via PIX</h3>
+      <p>Valor: <strong>R$ 39,90</strong></p>
+
+      <div class="pix-key" onclick="copyPix()">
+        Copiar Chave PIX
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyPix() {
+      navigator.clipboard.writeText("SUA_CHAVE_PIX_AQUI");
+      alert("Chave PIX copiada!");
+    }
+      function goToPix(e) {
+      e.preventDefault();
+      document.querySelector('.user-form').style.display = 'none';
+      document.getElementById('pixSection').style.display = 'block';
+    }
+
+  </script>
+</body>
+</html>

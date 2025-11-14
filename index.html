@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BlueControl – Controle Financeiro Inteligente</title>
+  <style>
+    :root {
+      --bg: #070b14;
+      --card: #0d1320;
+      --primary: #4da3ff;
+      --text: #e6ecff;
+      --muted: #9bb3d1;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ✨ ANIMAÇÃO – Partículas flutuando */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .particles span {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: float 12s infinite linear;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: .2; }
+      50% { opacity: .8; }
+      100% { transform: translateY(-1200px); opacity: 0; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      backdrop-filter: blur(12px);
+      background: rgba(7, 11, 20, 0.6);
+      z-index: 999;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      animation: fadeDown 1.5s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    nav a {
+      margin-left: 30px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      background: radial-gradient(circle at 50% 20%, rgba(77, 163, 255, 0.12), transparent 60%);
+      animation: fadeIn 2.2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero h2 {
+      font-size: 3rem;
+      max-width: 900px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 650px;
+    }
+
+    .cta {
+      margin-top: 40px;
+      padding: 14px 32px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50px;
+      color: #000;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      animation: pulse 3s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    .cta:hover {
+      opacity: 0.85;
+      transform: translateY(-2px);
+    }
+
+    .features {
+      padding: 120px 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 30px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+      transition: 0.3s;
+      animation: rise 1.2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card:hover {
+      transform: translateY(-6px) scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 0 25px rgba(77, 163, 255, 0.3);
+    }
+
+    .card h3 {
+      margin-bottom: 12px;
+      color: var(--primary);
+      font-size: 1.3rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--muted);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ✨ CAMADA DE PARTÍCULAS -->
+  <div class="particles">
+    <!-- 60 partículas -->
+    <script>
+      for (let i = 0; i < 60; i++) {
+        const p = document.createElement('span');
+        p.style.left = Math.random() * 100 + 'vw';
+        p.style.top = Math.random() * 100 + 'vh';
+        p.style.animationDuration = 6 + Math.random() * 10 + 's';
+        p.style.opacity = 0.2 + Math.random() * 0.8;
+        document.querySelector('.particles').appendChild(p);
+      }
+    </script>
+  </div>
+
+  <header>
+    <h1>BlueControl</h1>
+    <nav>
+      <a href="#features">Recursos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Controle financeiro inteligente com tecnologia futurista e interface ultra limpa.</h2>
+    <p>Organize suas finanças com automação, visual moderno e algoritmos projetados para elevar sua vida financeira.</p>
+    <button class="cta">Começar Agora</button>
+  </section>
+
+  <section class="features" id="features">
+    <div class="card">
+      <h3>Dashboard Neon Futurista</h3>
+      <p>Interface inspirada em sistemas de controle avançados, com visual imersivo e elegante.</p>
+    </div>
+    <div class="card">
+      <h3>Relatórios Inteligentes</h3>
+      <p>Insights automáticos, previsão e análise profunda do seu comportamento financeiro.</p>
+    </div>
+    <div class="card">
+      <h3>Segurança Avançada</h3>
+      <p>Criptografia e mecanismos profissionais para proteger seus dados.</p>
+    </div>
+    <div class="card">
+      <h3>Automação Total</h3>
+      <p>Importe transações, categorize gastos e receba previsões em segundos.</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 BlueControl – Todos os direitos reservados.
+  </footer>
+</body>
+</html>
